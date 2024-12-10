@@ -1,0 +1,1696 @@
+/* Variabile pentru culorile principale */
+:root {
+    --primary-color: #2E7D32;
+    --secondary-color: #D32F2F;
+    --light-green: #4CAF50;
+    --white: #ffffff;
+    --off-white: #f5f5f5;
+    --text-dark: #333333;
+    --border-color: #e0e0e0;
+}
+
+/* Reset și stiluri de bază */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--off-white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header și navigare */
+header {
+    background-color: var(--white);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo {
+    height: 90px;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.logo span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.slogan {
+    font-size: 1rem;
+    color: var(--text-dark);
+    margin-left: 1rem;
+    font-style: italic;
+}
+
+nav {
+    margin-left: auto;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+nav ul li a {
+    color: var(--text-dark);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+/* Container principal pentru conținut */
+main {
+    padding: 2rem;
+    flex: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Grid produse */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    padding: 1rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.product-card {
+    background: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.product-link {
+    text-decoration: none;
+    color: inherit;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+    margin-top: auto;
+}
+
+.add-to-cart-btn {
+    background-color: var(--light-green);
+    color: var(--white);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    width: 100%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.add-to-cart-btn:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.add-to-cart-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Notificări coș */
+.cart-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--light-green);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.cart-notification.fade-out {
+    animation: fadeOut 0.3s ease-out forwards;
+}
+
+/* Stilizare coș de cumpărături */
+.cart-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.cart-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem;
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.cart-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.item-details {
+    flex: 1;
+}
+
+.item-details h3 {
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.item-price {
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+.item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.quantity-btn {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quantity-btn:hover {
+    background-color: var(--light-green);
+}
+
+.item-total {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+    min-width: 120px;
+}
+
+.item-total p {
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.remove-item {
+    background: none;
+    border: none;
+    color: var(--secondary-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.remove-item:hover {
+    color: #b71c1c;
+}
+
+.cart-summary {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-end;
+}
+
+.total {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+#checkout-btn {
+    background-color: var(--light-green);
+    color: var(--white);
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+#checkout-btn:hover {
+    background-color: var(--primary-color);
+}
+
+#clear-cart-btn {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+#clear-cart-btn:hover {
+    background-color: #b71c1c;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    color: var(--text-dark);
+}
+
+/* Stilizare formular autentificare */
+.auth-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.auth-container h2 {
+    color: var(--text-dark);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.form-control {
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2);
+}
+
+.form-control.is-invalid {
+    border-color: var(--secondary-color);
+}
+
+.error-message {
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+}
+
+.alert {
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 4px;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    margin: 15px auto;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.auth-button {
+    background-color: var(--light-green);
+    color: var(--white);
+    border: none;
+    padding: 0.8rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.auth-button:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.auth-button-secondary {
+    background-color: var(--white);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 0.8rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.auth-button-secondary:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+.auth-link {
+    text-align: center;
+    color: var(--text-dark);
+}
+
+.auth-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.auth-link a:hover {
+    color: var(--light-green);
+}
+
+/* Stilizare Checkout */
+.checkout-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.checkout-container h2 {
+    color: var(--text-dark);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.checkout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .checkout-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.checkout-form {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.checkout-form h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+@media (max-width: 576px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.order-summary {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.order-summary h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.item-name {
+    flex: 2;
+}
+
+.item-quantity {
+    flex: 1;
+    text-align: center;
+}
+
+.item-price {
+    flex: 1;
+    text-align: right;
+    font-weight: bold;
+}
+
+.order-totals {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 2px solid var(--border-color);
+}
+
+.order-totals > div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.total {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+#paypal-button-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+#paypal-button-container .paypal-buttons {
+    margin: 0 auto !important;
+}
+
+/* Stilizare Checkout - Container și Grid */
+.checkout-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+.checkout-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+/* Stilizare Checkout - Formular */
+.checkout-form {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+/* Stilizare Checkout - Sumarul comenzii */
+.order-summary {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.order-totals {
+    margin-top: 20px;
+}
+
+.order-totals > div {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+}
+
+/* Stilizare Checkout - PayPal */
+#paypal-button-container {
+    margin-top: 20px;
+    min-height: 55px;
+}
+
+/* Stilizare Checkout - Alert și loading */
+.alert {
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.loading::after {
+    content: "";
+    width: 30px;
+    height: 30px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 2rem;
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 1rem;
+    }
+
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .slogan {
+        display: none;
+    }
+
+    main {
+        padding: 1rem;
+    }
+}
+
+/* Utilități */
+.cart-counter {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 0.2rem 0.5rem;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+}
+
+/* Stiluri pentru pagina de produs */
+.product-details-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.product-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.product-image {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.product-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 1rem;
+}
+
+.breadcrumb {
+    margin-bottom: 1rem;
+    color: #666;
+}
+
+.breadcrumb a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.product-info h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.product-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.product-category {
+    color: #666;
+}
+
+.in-stock {
+    color: var(--light-green);
+    font-weight: bold;
+}
+
+.out-of-stock {
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+.product-description {
+    margin: 2rem 0;
+}
+
+.product-description h2 {
+    color: var(--text-dark);
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--light-green);
+}
+
+.specifications {
+    display: grid;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.spec-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem;
+    background: #f8f9fa;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.spec-item:hover {
+    background: #f1f3f5;
+    transform: translateX(5px);
+}
+
+.spec-label {
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+.spec-value {
+    color: #666;
+}
+
+.features-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.features-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.5rem 0;
+    color: #444;
+}
+
+.features-list i {
+    color: var(--light-green);
+    font-size: 1.2rem;
+}
+
+.usage-tips {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.tip {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.tip:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.tip i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.tip h3 {
+    color: var(--text-dark);
+    margin-bottom: 0.8rem;
+    font-size: 1.2rem;
+}
+
+.tip p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.package-contents {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.package-contents li {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    background: #f8f9fa;
+    margin-bottom: 0.5rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.package-contents li:hover {
+    background: #f1f3f5;
+    transform: translateX(5px);
+}
+
+.package-contents i {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.maintenance-tips {
+    margin: 1.5rem 0;
+}
+
+.maintenance-tips p {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    background: #f8f9fa;
+    margin-bottom: 0.5rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.maintenance-tips p:hover {
+    background: #f1f3f5;
+    transform: translateX(5px);
+}
+
+.maintenance-tips i {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.product-price {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: #f9f9f9;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.product-price .price {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.add-to-cart {
+    background-color: var(--light-green);
+    color: var(--white);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.add-to-cart:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.add-to-cart:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Stiluri pentru pagina de contact */
+.contact-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 20px;
+}
+
+.contact-info {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info h1 {
+    color: #2c3e50;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.info-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.info-item:hover {
+    transform: translateY(-5px);
+}
+
+.info-item i {
+    font-size: 2rem;
+    color: #28a745; /* Schimbat din albastru în verde */
+    margin-right: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 50%;
+}
+
+.info-text h3 {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.info-text p {
+    color: #6c757d;
+    margin: 0.25rem 0;
+}
+
+.contact-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.contact-form h2 {
+    color: #2c3e50;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #e9ecef;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.contact-form button {
+    background: #28a745; /* Schimbat din albastru în verde */
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background: #218838; /* Verde mai închis pentru hover */
+}
+
+.map-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.map-container h2 {
+    color: #2c3e50;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.map-container iframe {
+    border-radius: 8px;
+    border: none;
+}
+
+/* Responsive design pentru mobil */
+@media (max-width: 768px) {
+    .contact-container {
+        padding: 0 15px;
+    }
+    
+    .info-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-info h1 {
+        font-size: 2rem;
+    }
+    
+    .contact-form,
+    .map-container {
+        padding: 1.5rem;
+    }
+}
+
+/* Stiluri pentru pagina de profil */
+.profile-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 20px;
+}
+
+.profile-container h1 {
+    color: #2c3e50;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.profile-container h1:after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #28a745;
+    margin: 1rem auto;
+    border-radius: 2px;
+}
+
+.profile-info {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.info-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.info-section h2 {
+    color: #2c3e50;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.info-section h2:before {
+    font-family: "Font Awesome 6 Free";
+    margin-right: 0.5rem;
+    font-weight: 900;
+}
+
+.info-section:nth-child(1) h2:before {
+    content: "\f007"; /* user icon */
+    color: #28a745;
+}
+
+.profile-form h2:before {
+    content: "\f2bb"; /* id-card icon */
+    color: #28a745;
+}
+
+.password-change-section h2:before {
+    content: "\f023"; /* lock icon */
+    color: #28a745;
+}
+
+.info-section p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: #6c757d;
+}
+
+.info-section p:before {
+    font-family: "Font Awesome 6 Free";
+    margin-right: 0.5rem;
+    font-weight: 900;
+    color: #28a745;
+    width: 20px;
+}
+
+.info-section p:nth-child(2):before {
+    content: "\f007"; /* user icon */
+}
+
+.info-section p:nth-child(3):before {
+    content: "\f0e0"; /* envelope icon */
+}
+
+.profile-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profile-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.profile-form label {
+    display: block;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.profile-form input,
+.profile-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #e9ecef;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.profile-form input:focus,
+.profile-form textarea:focus {
+    border-color: #28a745;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2);
+}
+
+.profile-form button {
+    background: #28a745;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.profile-form button:hover {
+    background: #218838;
+    transform: translateY(-1px);
+}
+
+.password-change-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.password-change-section .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #6c757d;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    margin-top: 1rem;
+}
+
+.password-change-section .btn-secondary:before {
+    content: "\f084"; /* key icon */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    margin-right: 0.5rem;
+}
+
+.password-change-section .btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-1px);
+}
+
+.alert {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+}
+
+.alert:before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    margin-right: 0.5rem;
+}
+
+.alert-success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-success:before {
+    content: "\f00c"; /* check icon */
+}
+
+.alert-danger {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.alert-danger:before {
+    content: "\f071"; /* exclamation-triangle icon */
+}
+
+/* Responsive design pentru mobil */
+@media (max-width: 768px) {
+    .profile-container {
+        padding: 0 15px;
+    }
+    
+    .profile-container h1 {
+        font-size: 2rem;
+    }
+    
+    .info-section,
+    .profile-form,
+    .password-change-section {
+        padding: 1.5rem;
+    }
+}
+
+/* Stiluri pentru pagina de schimbare parolă */
+.change-password-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 0 20px;
+}
+
+.change-password-container h1 {
+    color: #2c3e50;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.change-password-container h1:after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #28a745;
+    margin: 1rem auto;
+    border-radius: 2px;
+}
+
+.password-form-wrapper {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.password-input-group {
+    position: relative;
+}
+
+.password-input-group input {
+    padding-right: 40px;
+}
+
+.password-input-group i {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #28a745;
+}
+
+.invalid-feedback {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: block;
+}
+
+.is-invalid {
+    border-color: #dc3545 !important;
+}
+
+.is-invalid:focus {
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+}
+
+.change-password-container .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.change-password-container .form-group:last-child {
+    margin-bottom: 0;
+    display: flex;
+    gap: 1rem;
+}
+
+.change-password-container .btn {
+    flex: 1;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+}
+
+.change-password-container .btn-primary {
+    background: #28a745;
+    color: white;
+}
+
+.change-password-container .btn-primary:hover {
+    background: #218838;
+    transform: translateY(-1px);
+}
+
+.change-password-container .btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.change-password-container .btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-1px);
+}
+
+/* Responsive design pentru mobil */
+@media (max-width: 768px) {
+    .change-password-container {
+        padding: 0 15px;
+    }
+    
+    .change-password-container h1 {
+        font-size: 2rem;
+    }
+    
+    .password-form-wrapper {
+        padding: 1.5rem;
+    }
+    
+    .change-password-container .form-group:last-child {
+        flex-direction: column;
+    }
+    
+    .change-password-container .btn {
+        width: 100%;
+    }
+}
+
+/* Stiluri pentru textele principale de pe pagini */
+.welcome-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 20px;
+    text-align: center;
+}
+
+.welcome-section h1 {
+    color: #2c3e50;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.welcome-section p {
+    color: #6c757d;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.products-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 20px;
+}
+
+.products-section h2 {
+    color: #2c3e50;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Stiluri actualizate pentru footer */
+footer {
+    background-color: #f8f9fa;
+    padding: 3rem 0 1rem;
+    margin-top: 3rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+}
+
+.company-info,
+.program {
+    text-align: center;
+}
+
+.company-info h3,
+.program h3 {
+    color: #2c3e50;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.company-info p,
+.program p {
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #dee2e6;
+}
+
+.copyright p {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+/* Responsive design pentru footer */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .company-info,
+    .program {
+        text-align: center;
+    }
+}
